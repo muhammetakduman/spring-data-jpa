@@ -1,6 +1,8 @@
 package com.muhammetakduman.controller.impl;
 
 import com.muhammetakduman.controller.IStudentController;
+import com.muhammetakduman.dto.DtoStudent;
+import com.muhammetakduman.dto.DtoStudentIU;
 import com.muhammetakduman.entities.Student;
 import com.muhammetakduman.services.IStudentServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +20,8 @@ public class StudentControllerImpls implements IStudentController {
     //DTO kullanılır
     @PostMapping(path = "/save")
     @Override
-    public Student saveStudent(@RequestBody Student student) {
-        return iStudentServices.saveStudent(student);
+    public DtoStudent saveStudent(@RequestBody DtoStudentIU dtoStudentIU) {
+        return iStudentServices.saveStudent(dtoStudentIU);
     }
 
     @GetMapping(path = "/list")

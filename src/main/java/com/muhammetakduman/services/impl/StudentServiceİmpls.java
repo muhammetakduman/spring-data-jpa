@@ -1,8 +1,11 @@
 package com.muhammetakduman.services.impl;
 
+import com.muhammetakduman.dto.DtoStudent;
+import com.muhammetakduman.dto.DtoStudentIU;
 import com.muhammetakduman.entities.Student;
 import com.muhammetakduman.repository.StudentRepository;
 import com.muhammetakduman.services.IStudentServices;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,11 +14,18 @@ import java.util.Optional;
 
 @Service
 public class StudentServiceİmpls implements IStudentServices {
+
     @Autowired
     private StudentRepository studentRepository;
+
     @Override
-    public Student saveStudent(Student student) {
-        return studentRepository.save(student);
+    public DtoStudent saveStudent(DtoStudentIU dtoStudentIU) {
+        Student student = new Student();
+        DtoStudent response = new DtoStudent();
+        BeanUtils.copyProperties(dtoStudentIU,student);
+        Student dbStudent = studentRepository.save(student);
+        BeanUtils.copyProperties(dbStudent,response);
+        return response;
     }
 
     @Override
