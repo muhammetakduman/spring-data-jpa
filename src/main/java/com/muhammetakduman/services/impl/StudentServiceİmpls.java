@@ -6,6 +6,8 @@ import com.muhammetakduman.services.IStudentServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class StudentServiceİmpls implements IStudentServices {
     @Autowired
@@ -13,5 +15,11 @@ public class StudentServiceİmpls implements IStudentServices {
     @Override
     public Student saveStudent(Student student) {
         return studentRepository.save(student);
+    }
+
+    @Override
+    public List<Student> getAllStudents() {
+        List<Student> studentList = studentRepository.findAll();
+        return studentList;
     }
 }
