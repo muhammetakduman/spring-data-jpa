@@ -22,6 +22,6 @@ public class Student {
     private String firstName;
     @Column(name = "last_name",nullable = false)
     private String lastName;
-    @Column(name = "birh_of_date",nullable = true)
+    @Column(name = "birth_of_date",nullable = true)
     private String birthOfDate;
 }
