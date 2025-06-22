@@ -27,4 +27,17 @@ public class StudentControllerImpls implements IStudentController {
     public List<Student> getAllStudents() {
         return iStudentServices.getAllStudents();
     }
+
+    @Override
+    @GetMapping(path = "/list/{id}")
+    public Student getStudentById(@PathVariable(name = "id") Integer id) {
+        return iStudentServices.getStudentById(id);
+    }
+
+    @Override
+    @DeleteMapping(path = "/delete/{id}")
+    public void deleteStudent(@PathVariable(name = "id") Integer id) {
+        iStudentServices.deleteStudent(id);
+    }
+
 }
