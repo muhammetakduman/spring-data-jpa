@@ -26,13 +26,13 @@ public class StudentControllerImpls implements IStudentController {
 
     @GetMapping(path = "/list")
     @Override
-    public List<Student> getAllStudents() {
+    public List<DtoStudent> getAllStudents() {
         return iStudentServices.getAllStudents();
     }
 
-    @Override
     @GetMapping(path = "/list/{id}")
-    public Student getStudentById(@PathVariable(name = "id") Integer id) {
+    @Override
+    public DtoStudent getStudentById(@PathVariable(name = "id") Integer id) {
         return iStudentServices.getStudentById(id);
     }
 
@@ -44,8 +44,8 @@ public class StudentControllerImpls implements IStudentController {
 
     @Override
     @PutMapping(path = "/update/{id}")
-    public Student updateStudent(@PathVariable(name = "id") Integer id, @RequestBody Student updateStudent) {
-        return iStudentServices.updateStudent(id,updateStudent);
+    public DtoStudent updateStudent(@PathVariable(name = "id") Integer id, @RequestBody DtoStudentIU dtoStudentIU) {
+        return iStudentServices.updateStudent(id,dtoStudentIU);
     }
 
 }
