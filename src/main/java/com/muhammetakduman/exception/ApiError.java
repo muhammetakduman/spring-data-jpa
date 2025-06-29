@@ -12,9 +12,10 @@ import java.util.Map;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ApiError {
+public class ApiError<T> {
     private String id;
     private Date errorTime;
-    private Map<String ,List<String>> errors;
+    // hata mesajları illa bir list içinde dönmeyeği için generic tür tanımlaması yapmalıyız.
+    private T errors;
 
 }
