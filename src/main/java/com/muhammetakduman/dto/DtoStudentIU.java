@@ -19,6 +19,8 @@ public class DtoStudentIU {
     @NotNull(message = "First name alanı boş bırakılamaz")
     @Size(min = 3, max = 30 , message = "Böyle bir isim türkiyde yok.")
     private String firstName;
+
+    @NotEmpty(message = "last name alanını soy isimde boş bırakılmaz.")
     private String lastName;
     private String birthOfDate;
 
