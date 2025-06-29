@@ -24,4 +24,8 @@ public class DtoStudentIU {
     private String lastName;
     private String birthOfDate;
 
+    @Size(min = 11 , max = 11)
+    @NotEmpty(message = "tckn boş bırakılamaz")
+    private String tckn;
+
 }
