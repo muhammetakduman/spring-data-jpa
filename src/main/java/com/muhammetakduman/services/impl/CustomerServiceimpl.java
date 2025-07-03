@@ -1,6 +1,6 @@
 package com.muhammetakduman.services.impl;
 
-import com.muhammetakduman.dto.DtoAdrdress;
+import com.muhammetakduman.dto.DtoAddress;
 import com.muhammetakduman.dto.DtoCustomer;
 import com.muhammetakduman.entities.Address;
 import com.muhammetakduman.entities.Customer;
@@ -21,7 +21,7 @@ public class CustomerServiceimpl  implements ICustomerServices {
     @Override
     public DtoCustomer findCustomerById(Long id) {
         DtoCustomer dtoCustomer = new DtoCustomer();
-        DtoAdrdress dtoAdrdress = new DtoAdrdress();
+        DtoAddress dtoAddress = new DtoAddress();
         Optional<Customer> optional =customerRepository.findById(id);
         if (optional.isEmpty()){
             return null;
@@ -29,8 +29,8 @@ public class CustomerServiceimpl  implements ICustomerServices {
             Customer customer = optional.get();
             Address address = optional.get().getAddress();
             BeanUtils.copyProperties(customer,dtoCustomer);
-            BeanUtils.copyProperties(address,dtoAdrdress);
-            dtoCustomer.setAdrdress(dtoAdrdress);
+            BeanUtils.copyProperties(address, dtoAddress);
+            dtoCustomer.setAdrdress(dtoAddress);
             return dtoCustomer;
 
         }
