@@ -23,13 +23,13 @@ public class EmployeeServiceimpl implements IEmployeeServices {
     public List<DtoEmployee> findAllEmployess() {
         List<DtoEmployee> dtoEmployeeList = new ArrayList<>();
         List<Employee> employeeList = employeeRepository.findAll();
-
         if (employeeList != null && !employeeList.isEmpty()){
             for (Employee employee : employeeList){
                 DtoEmployee dtoEmployee = new DtoEmployee();
                 BeanUtils.copyProperties(employee,dtoEmployee);
 
                 dtoEmployee.setDepartmen(new DtoDepartmen(employee.getDepartment().getId(),employee.getDepartment().getDepartmanName()));
+                dtoEmployeeList.add(dtoEmployee);
 
             }
         }
