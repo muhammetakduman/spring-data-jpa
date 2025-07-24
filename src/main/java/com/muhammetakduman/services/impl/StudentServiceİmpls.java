@@ -1,7 +1,9 @@
 package com.muhammetakduman.services.impl;
 
+import com.muhammetakduman.dto.DtoCourse;
 import com.muhammetakduman.dto.DtoStudent;
 import com.muhammetakduman.dto.DtoStudentIU;
+import com.muhammetakduman.entities.Course;
 import com.muhammetakduman.entities.Student;
 import com.muhammetakduman.repository.StudentRepository;
 import com.muhammetakduman.services.IStudentServices;
@@ -44,14 +46,24 @@ public class StudentServiceİmpls implements IStudentServices {
 
     @Override
     public DtoStudent getStudentById(Integer id) {
-        DtoStudent dto = new DtoStudent();
+        DtoStudent dtoStudent = new DtoStudent();
         Optional<Student> optional = studentRepository.findById(id);
-        if (optional.isPresent()){
-            Student dbStudent = optional.get();
-            BeanUtils.copyProperties(dbStudent,dto);
+
+        if (optional.isEmpty()){
+            return null;
         }
-        System.out.println("Bu idli kimse yok");
-        return null;
+        Student dbStudent = optional.get();
+        BeanUtils.copyProperties(dbStudent,dtoStudent);
+        if (dbStudent.getCourses()!=null && !dbStudent.getCourses().isEmpty()){
+            List<DtoCourse> dtoCourseList  = new ArrayList<>();
+            for (Course course : dbStudent.getCourses()){
+                DtoCourse dtoCourse = new DtoCourse();
+                BeanUtils.copyProperties(course,dtoCourse);
+                dtoCourseList.add(dtoCourse);
+            }
+            dtoStudent.setCourses(dtoCourseList);
+        }
+        return dtoStudent;
     }
 
     @Override

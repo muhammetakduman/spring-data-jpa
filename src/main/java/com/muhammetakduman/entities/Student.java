@@ -7,7 +7,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.List;
+
 @Entity
+@Table(name = "student")
 @Data
 @ToString
 @NoArgsConstructor
@@ -24,4 +27,10 @@ public class Student {
     private String lastName;
     @Column(name = "birth_of_date",nullable = true)
     private String birthOfDate;
+
+    @ManyToMany
+    @JoinTable(name = "student_course",
+    joinColumns = @JoinColumn(name ="student_id" ),
+    inverseJoinColumns = @JoinColumn(name = "course_id"))
+    private List<Course> courses;
 }
