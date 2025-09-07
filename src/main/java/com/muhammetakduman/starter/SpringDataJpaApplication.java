@@ -12,7 +12,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan(basePackages = {"com.muhammetakduman"})
 @ComponentScan(basePackages = {"com.muhammetakduman"})
 @EnableJpaRepositories(basePackages = {"com.muhammetakduman"})
-@PropertySource(value = "classpath:app.properties")
+//@PropertySource(value = "classpath:app.properties")
 
 public class SpringDataJpaApplication {
 
